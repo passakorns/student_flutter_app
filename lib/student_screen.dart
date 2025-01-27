@@ -10,9 +10,15 @@ class StudentScreen extends StatefulWidget {
   State<StudentScreen> createState() => _StudentScreenState();
 }
 
-class _StudentScreenState extends State<StudentScreen> {
+class _StudentScreenState extends State<StudentScreen> {  
   @override
   Widget build(BuildContext context) {
+    
+    Student.updateStudentItems = (){
+      setState(() {
+        Student.countItems = Student.studentItems.length;
+      });
+    };
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -74,6 +80,7 @@ class _StudentScreenState extends State<StudentScreen> {
       itemBuilder: (ctx, index){
         return Column(
           children: [
+            //ลบรายการในแถวที่ใช้นิ้วเลื่อนจากขวาไปซ้าย end to Start
             Dismissible(
               key: Key(Student.studentItems[index]['id']),
               background: Container(
